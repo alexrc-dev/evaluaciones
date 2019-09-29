@@ -1,14 +1,6 @@
-import App from './App';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import React from 'react';
-import { hydrate } from 'react-dom';
+import client from './start-client';
 
-hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+client();
 
 if (module.hot) {
   module.hot.accept();
