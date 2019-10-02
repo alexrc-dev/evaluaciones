@@ -9,6 +9,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "animejs": "^3.1.0",
     "async": "^3.1.0",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
@@ -16,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.1",
     "history": "^4.9.0",
+    "lodash": "latest",
     "prop-types": "^15.7.2",
     "razzle": "^3.0.0",
     "react": "^16.10.1",
@@ -30,8 +32,7 @@
     "redux-actions": "^2.6.5",
     "redux-connect": "^9.0.0",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "^2.1.0",
-    "lodash": "latest"
+    "serialize-javascript": "^2.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.4.0",

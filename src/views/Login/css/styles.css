@@ -1,0 +1,39 @@
+.heading-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+.heading-img{
+    background-image: url("/img/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heading-fade{
+    background-color: rgba(9, 25, 10, 0);
+    z-index: -9;
+}
+
+.middle-panel {
+    position: fixed;
+    z-index: -1;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #fff;
+    opacity: 0.1;
+    padding: 12px 16px;
+    border-radius: 4px;
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+    width: 25%;
+}
+
+.btn-primary {
+    background-color: #36913f !important;
+    color: #fff !important;
+}

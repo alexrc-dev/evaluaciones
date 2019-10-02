@@ -1,7 +1,10 @@
 import {LoginView, App} from '../views';
 
 const defaultAppRoutes = [
-
+    {
+        path: '/app',
+        component: App,
+    }
 ];
 
 const routes = [
