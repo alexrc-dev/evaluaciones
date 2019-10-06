@@ -1,0 +1,10 @@
+header {
+    width: calc(100% - (235px + 40px));
+    box-shadow: var(--box-shadow-4);
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(calc(-50% + (235px - 120px)));
+    height: 48px;
+    z-index: 1600;
+}

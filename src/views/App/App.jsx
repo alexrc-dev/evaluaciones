@@ -1,13 +1,16 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
+import NavBar from "../../components/NavBar/NavBar";
+import AppBar from "../../components/AppBar/AppBar";
 
 class App extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <h1>App View</h1>
-
-                {renderRoutes(this.props.route.routes)}
+                <div id="layout" className="content pure-g">
+                    <NavBar/>
+                    <AppBar/>
+                </div>
             </React.Fragment>
         );
     }
