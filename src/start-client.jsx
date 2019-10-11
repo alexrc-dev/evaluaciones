@@ -9,16 +9,19 @@ import routes from './routes';
 import configureStore from './store';
 import './assets/css/pure-min.css';
 import './assets/css/global.css';
+
+import {Api} from "./helpers";
+
 export default () => {
     const history = createBrowserHistory();
-    // const api = new Api();
-    const store = configureStore(window.__data, history/*, api*/);
+    const api = new Api();
+    const store = configureStore(window.__data, history, api);
 
     hydrate(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <BrowserRouter>
-                    <ReduxAsyncConnect routes={routes}/>
+                    <ReduxAsyncConnect routes={routes} helpers={api}/>
                 </BrowserRouter>
             </ConnectedRouter>
         </Provider>,

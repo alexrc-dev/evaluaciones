@@ -9,7 +9,7 @@ import {parse as parseUrl} from 'url';
 import cookie, {plugToRequest} from 'react-cookie';
 import routes from './routes';
 import {
-    Html
+    Html, Api
 } from "./helpers";
 import ErrorPage from './error';
 import configureStore from './store';
@@ -22,20 +22,20 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
     .get('/*', (req, res) => {
         plugToRequest(req, res);
-        // const api = new Api();
+        const api = new Api(req);
         const url = req.originalUrl || req.url;
         const location = parseUrl(url);
         const initialState = {};
         const history = createMemoryHistory({initialEntries: [req.url],});
-        const store = configureStore(initialState, history/*, api*/);
+        const store = configureStore(initialState, history, api);
 
-        loadOnServer({store, location, routes /*, api*/})
+        loadOnServer({store, location, routes, api})
             .then(() => {
                 const context = {};
                 const markup = renderToString(
                     <Provider store={store}>
                         <StaticRouter context={context} location={req.url}>
-                            <ReduxAsyncConnect routes={routes}/>
+                            <ReduxAsyncConnect routes={routes} helpers={api}/>
                         </StaticRouter>
                     </Provider>
                 );
@@ -56,5 +56,6 @@ server
                 res.status(500).send(`<!doctype html> ${renderToString(errorPage)}`);
         })
     });
+
 
 export default server;

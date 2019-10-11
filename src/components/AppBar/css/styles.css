@@ -8,3 +8,32 @@ header {
     height: 48px;
     z-index: 1600;
 }
+
+header .toolbar {
+    padding: 2px 16px;
+    display: flex;
+    height: 48px;
+    align-items: center;
+}
+
+header .head-title {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 18px;
+    border-bottom: var(--primary-color) 4px solid;
+    padding-bottom: 2px;
+}
+
+header #logout-btn {
+    background-color: transparent;
+    border: transparent 1px solid;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+header #logout-btn:focus, header #logout-btn:hover {
+    border: var(--secondary-color) 1px solid;
+    outline: none;
+}

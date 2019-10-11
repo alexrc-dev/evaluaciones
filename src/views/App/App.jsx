@@ -1,16 +1,24 @@
 import React from 'react';
-import { renderRoutes } from 'react-router-config';
+import {renderRoutes} from 'react-router-config';
 import NavBar from "../../components/NavBar/NavBar";
 import AppBar from "../../components/AppBar/AppBar";
+import {LoginView} from "../";
+import {Route} from "react-router";
+
+const mainStyles = {
+    width: 'calc(100% - 277px)',
+    margin: '80px 20px 0 253px',
+};
 
 class App extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="layout" className="content pure-g">
-                    <NavBar/>
-                    <AppBar/>
-                </div>
+                <NavBar routes={this.props.route.routes}/>
+                <AppBar title={this.props.route.titles[this.props.location.pathname]}/>
+                <main style={mainStyles}>
+                    {renderRoutes(this.props.route.routes)}
+                </main>
             </React.Fragment>
         );
     }

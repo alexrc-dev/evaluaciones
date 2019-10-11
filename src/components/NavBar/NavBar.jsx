@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/styles.css';
 import {Link} from "react-router-dom";
-
+import PropTypes from 'prop-types';
 class NavBar extends React.Component {
     render() {
         return (
@@ -11,7 +11,13 @@ class NavBar extends React.Component {
                         <img src="/img/logo.jpg" alt="logo"/>
                     </div>
                     <div id={"nav-body"}>
-                        <Link to={"/"} className="pure-button pure-button-primary-cs pure-u-1">Home</Link>
+                        <ul style={{listStyle: 'none', padding: 0}}>
+                            {this.props.routes.map((route, key) => (
+                                <li key={key}>
+                                    <Link className="pure-button pure-u-1" to={route.path}>{route.title}</Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -19,4 +25,7 @@ class NavBar extends React.Component {
     }
 }
 
+NavBar.propTypes = {
+    routes: PropTypes.array.isRequired,
+};
 export default NavBar;
