@@ -1,0 +1,39 @@
+.mi-card {
+    border-radius: 4px;
+    box-shadow: var(--box-shadow-3);
+}
+
+.mi-card .mi-card-header {
+    border-radius: 4px;
+    padding: 4px 8px;
+    background-color: var(--secondary-color);
+    box-shadow: var(--box-shadow-5);
+    width: 82%;
+    margin: 0 auto;
+    transform: translateY(-25%);
+    color: #fff;
+    font-size: 20px;
+}
+
+.mi-card .mi-card-actions {
+    padding: 4px;
+}
+
+.mi-card .mi-card-actions div {
+    display: flex;
+}
+
+.mi-card .mi-card-body {
+    margin-top: -20px;
+    padding: 2px 8px;
+}
+
+.mi-card a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.mi-card a:-webkit-any-link {
+    color: var(--primary-color);
+
+}
