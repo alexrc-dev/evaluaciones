@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const methods = ["GET", "POST", "PATCH", "DELETE"];
+export const methods = ["GET", "POST", "PATCH", "DELETE"];
 
 function formatUrl(path) {
     const adjustedPath = path[0] !== '/' ? `/${path}` : path;

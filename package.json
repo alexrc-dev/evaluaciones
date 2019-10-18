@@ -14,10 +14,13 @@
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.4.0",
+    "crypto-js": "^3.1.9-1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "helmet": "^3.21.1",
     "history": "^4.9.0",
     "lodash": "latest",
+    "pg": "^7.12.1",
     "prop-types": "^15.7.2",
     "razzle": "^3.0.0",
     "react": "^16.10.1",
@@ -32,7 +35,8 @@
     "redux-actions": "^2.6.5",
     "redux-connect": "^9.0.0",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "^2.1.0"
+    "serialize-javascript": "^2.1.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.4.0",

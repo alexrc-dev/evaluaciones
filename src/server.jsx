@@ -8,6 +8,7 @@ import {ReduxAsyncConnect, loadOnServer} from "redux-connect";
 import {parse as parseUrl} from 'url';
 import cookie, {plugToRequest} from 'react-cookie';
 import routes from './routes';
+import session from 'express-session';
 import {
     Html, Api
 } from "./helpers";
@@ -17,6 +18,11 @@ import configureStore from './store';
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
+server.use(session(
+    {
+        secret: '53cr37',
+    }
+));
 server
     .disable('x-powered-by')
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR))

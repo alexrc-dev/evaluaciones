@@ -16,6 +16,7 @@ export const Html = ({assets, markup, store}) => {
             {head.link.toComponent()}
             {head.script.toComponent()}
             <link rel="shortcut icon" href={"/favicon.ico"}/>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             {assets.client.css? (
                 <link rel="stylesheet" href={assets.client.css}/>

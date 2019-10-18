@@ -1,9 +1,6 @@
 import React from 'react';
 import {renderRoutes} from 'react-router-config';
-import NavBar from "../../components/NavBar/NavBar";
-import AppBar from "../../components/AppBar/AppBar";
-import {LoginView} from "../";
-import {Route} from "react-router";
+import {AppBar, NavBar} from "../../components";
 
 const mainStyles = {
     width: 'calc(100% - 277px)',
