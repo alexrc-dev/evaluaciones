@@ -11,17 +11,17 @@ const getUserByUsername = async (username) => await query("select * from users w
 const getUserByEmail = async (email) => await query("select * from users where email = $1", [email]);
 
 const saveUser = async (data) => {
-    const {password, username, email} = data;
-    let encryptedPassword = encryptPassword(password);
+    const {password, username, email, role} = data;
+    let encryptedPassword = password === '' ? {pass: '', salt: ''} : encryptPassword(password);
     let id = uuid();
-    let result = await query("insert into users(id, username, email, password, salt) values ($1, $2, $3, $4, $5)",
-        [id, username, email, encryptedPassword.pass, encryptedPassword.salt]);
+    let result = await query("insert into users(id, username, email, password, salt, role) values ($1, $2, $3, $4, $5, $6)",
+        [id, username, email, encryptedPassword.pass, encryptedPassword.salt, role]);
+    // console.log('RESULT: ', result);
     return {
         ...result,
         id
     }
 };
-
 const updateUserPassword = async (id, password) => {
     let enc = encryptPassword(password);
     return await query("update users set password = $1, salt = $2 where id= $3", [enc.pass, enc.salt, id]);

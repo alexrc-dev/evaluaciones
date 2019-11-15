@@ -37,3 +37,8 @@
     background-color: #36913f !important;
     color: #fff !important;
 }
+
+.mi-input-error {
+    border: red 1px solid;
+    background-color: rgba(255, 0, 0, 0.32);
+}

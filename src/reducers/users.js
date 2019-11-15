@@ -28,60 +28,80 @@ export default function users(state = initialState, action = {}) {
                     loading: true,
                     loaded: false,
                     error: null
-                }
+                },
+                action,
             };
         case `${GET_USERS}_SUCCESS`: {
             return {
+                ...state,
                 users: action.response.data,
                 [getActionType(action.type)]: {
                     loading: false,
                     loaded: true,
                     error: null
                 },
-                ...state
+                action,
             }
         }
         case `${GET_USER}_SUCCESS`: {
             return {
+                ...state,
                 user: action.response.data,
                 [getActionType(action.type)]: {
                     loading: false,
                     loaded: true,
                     error: null
                 },
-                ...state
+                action,
             }
+        }
+        case `${SAVE_USER}_SUCCESS`:
+        case `${UPDATE_USER}_SUCCESS`: {
+            return {
+                ...state,
+                [getActionType(action.type)]: {
+                    loading: false,
+                    loaded: true,
+                    error: null
+                },
+                action,
+            };
         }
         case `${GET_USERS}_FAIL`:
             return {
+                ...state,
                 users: [],
                 [getActionType(action.type)]: {
                     loading: false,
                     loaded: false,
                     error: action.error,
                 },
-                ...state
+                action,
             };
         case `${GET_USER}_FAIL`:
             return {
+                ...state,
                 user: {},
                 [getActionType(action.type)]: {
                     loading: false,
                     loaded: false,
                     error: action.error,
                 },
-                ...state
+                action,
             };
         case `${SAVE_USER}_FAIL`:
         case `${UPDATE_USER}_FAIL`: {
             return {
+                ...state,
                 [getActionType(action.type)]: {
                     loading: false,
-                    loaded: false,
+                    loaded: true,
                     error: action.error,
                 },
-                ...state
+                action,
             }
         }
+        default:
+            return state;
     }
 };

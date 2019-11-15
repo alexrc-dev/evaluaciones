@@ -1,13 +1,12 @@
 import {query} from "../connection";
 import uuid from 'uuid/v1';
 
-const listTeachers = async () => await query("select * from teachers");
+const listTeachers = async () => await query("select teachers.*, u.* from teachers inner join users u on teachers.user_id = u.id");
 
-const queryTeacherById = async id => await query("select * from teachers where user_id = $1", [id]);
+const queryTeacherById = async id => await query("select teachers.* from teachers where user_id = $1", [id]);
 
 const saveTeacher = async (data) => {
-    let {name, last_names, age, gender, phone, phone2, address} = data;
-    let id = uuid();
+    let {id, name, last_names, age, gender, phone, phone2, address} = data;
     return await query("insert into teachers(user_id, name, last_names, age, gender, phone, phone2, address) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
         [id, name, last_names, age, gender, phone, phone2 ? phone2 : '', address ? address : ''])
 };

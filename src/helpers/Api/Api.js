@@ -4,7 +4,7 @@ export const methods = ["GET", "POST", "PATCH", "DELETE"];
 
 function formatUrl(path) {
     const adjustedPath = path[0] !== '/' ? `/${path}` : path;
-    return `/${adjustedPath}`;
+    return `http://localhost:3000${adjustedPath}`;
 }
 
 export class Api {
@@ -20,11 +20,14 @@ export class Api {
                     if (params) {
                         requestOptions.params = params;
                     }
-                    if (data) requestOptions.data = data;
-
-                    axios.request({...requestOptions})
-                        .then(response => resolve(response))
-                        .catch(error => reject(error));
+                    if (data) {
+                        requestOptions.data = data;
+                        requestOptions.headers = {...requestOptions.headers, 'Content-Type': 'application/json'}
+                    }
+                    axios.request({...requestOptions}).then(
+                        response => resolve(response),
+                        error => reject(error),
+                    )
                 })
         })
     }

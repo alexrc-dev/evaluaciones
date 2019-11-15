@@ -3,12 +3,11 @@ import thunk from 'redux-thunk';
 import {connectRouter, routerMiddleware} from "connected-react-router";
 import reducers from './reducers';
 import api from './middleware/api';
-
 const configureStore = (initialState, history, apiHelper) => {
     const middlewares = applyMiddleware(
         routerMiddleware(history),
         thunk,
-        api(apiHelper),
+        api(apiHelper)
     );
 
     const store = createStore(

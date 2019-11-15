@@ -17,7 +17,7 @@ export default api => ({dispatch, getState}) => next => action => {
 
     actionPromise.then(response => {
         return next({...rest, response, type: `${type}_SUCCESS`});
-    }).catch(error => {
+    }, error => {
         next({...rest, error, type: `${type}_FAIL`});
     });
     return actionPromise;

@@ -7,6 +7,7 @@ import {
     updateUserPassword,
     deleteUser
 } from '../services/users';
+import {encryptPassword} from "../../helpers/Extras/passwordExtras";
 
 const getUsers = async (req, res) => {
     try {
@@ -14,7 +15,7 @@ const getUsers = async (req, res) => {
         res.status(200).json(rows);
     } catch (e) {
         console.log(e);
-        res.status(500);
+        res.status(500).json({error: true, description: e.message});
     }
 };
 const fetchUserById = async (req, res) => {
@@ -25,29 +26,44 @@ const fetchUserById = async (req, res) => {
         res.json(rows[0]);
     } catch (e) {
         console.error(e.message);
-        res.status(500);
+        res.status(500).json({error: true, description: e.message});
     }
 };
 
 const fetchForLogin = async (req, res) => {
-    let {idIntent} = req.body;
-    let user = await getUserByUsername(idIntent).rows[0];
-    if (!user) user = await getUserByEmail(idIntent).rows[0];
-    if (!user) return res.status(404).json({correct: false});
-    req.session.userId = user["id"];
-    res.status(200).json({correct: true});
+    try {
+
+        let {idIntent, password} = req.body;
+        let result = await getUserByUsername(idIntent);
+
+        // console.log('RESULT: ', result.rows.length);
+        if (result.rowCount === 0) result = await getUserByEmail(idIntent);
+        if (result.rowCount === 0) return res.status(404).json({error: 'Usuario no encontrado'});
+        let user = result.rows[0];
+        let enc = encryptPassword(password, user['salt']);
+        if (user['password'] === enc.pass) {
+            req.session.userId = user["id"];
+            req.session.code = user["role"];
+            res.status(200).json({code: user['role'], userId: req.session.userId});
+        } else {
+            res.status(401).json({error: 'Contraseña incorrecta'});
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({error: true, description: e.message});
+    }
 };
 
 const trySaveUser = async (req, res) => {
     try {
         let result = await saveUser(req.body);
-        if (result.result.rowCount)
+        if (result.rowCount)
             res.status(201).json({created: true, id: result.id});
         else
             res.json({created: false})
     } catch (e) {
-        console.error(e.message);
-        res.status(500);
+        console.error('Error on save user:', e.message);
+        res.status(500).json({error: true, description: e.message});
     }
 };
 
@@ -61,7 +77,7 @@ const tryUpdatePassword = async (req, res) => {
             res.json({updated: false})
     } catch (e) {
         console.log(e);
-        res.status(500);
+        res.status(500).json({error: true, description: e.message});
     }
 };
 

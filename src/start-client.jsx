@@ -7,8 +7,8 @@ import {createBrowserHistory} from "history";
 import {ReduxAsyncConnect} from "redux-connect";
 import routes from './routes';
 import configureStore from './store';
-import './assets/css/pure-min.css';
-import './assets/css/global.css';
+// import './assets/css/pure-min.css';
+// import './assets/css/global.css';
 
 import {Api} from "./helpers";
 
